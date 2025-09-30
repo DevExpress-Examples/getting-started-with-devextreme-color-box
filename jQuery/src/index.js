@@ -1,10 +1,20 @@
 $(() => {
-  let count = 0;
-  $('#btn').dxButton({
-    text: `Click count: ${count}`,
-    onClick(e) {
-      count += 1;
-      e.component.option('text', `Click count: ${count}`);
+  $('#color-box').dxColorBox({
+    label: 'Pick a color',
+    value: '#000000',
+    editAlphaChannel: true,
+    applyButtonText: 'Show notification',
+    showClearButton: true,
+    onValueChanged(e) {
+      const toastColor = e.value;
+      if (toastColor) {
+        DevExpress.ui.notify({
+          message: 'The color has been changed',
+          onShowing(args) {
+            $(args.component.content()).css('background-color', toastColor);
+          },
+        });
+      }
     },
   });
 });

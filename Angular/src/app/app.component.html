@@ -1,3 +1,9 @@
-<div class="default-style">
-  <dx-button [text]="buttonText" (onClick)="onClick($event)"></dx-button>
-</div>
+<dx-color-box
+  label="Pick a color"
+  value="#000000"
+  [editAlphaChannel]="true"
+  applyButtonText="Show notification"
+  [showClearButton]="true"
+  (onValueChanged)="onValueChanged($event)"
+>
+</dx-color-box>

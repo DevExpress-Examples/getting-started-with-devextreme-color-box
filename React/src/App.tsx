@@ -1,16 +1,34 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import './App.css';
 import 'devextreme/dist/css/dx.material.blue.light.compact.css';
-import Button from 'devextreme-react/button';
+import { ColorBox } from 'devextreme-react/color-box';
+import type { ColorBoxTypes } from 'devextreme-react/color-box';
+import notify from 'devextreme/ui/notify';
+import type { ToastTypes } from 'devextreme-react/toast';
 
 function App(): JSX.Element {
-  var [count, setCount] = useState<number>(0);
-  const clickHandler = useCallback(() => {
-    setCount((prev) => prev + 1);
-  }, [setCount]);
+  const onValueChanged = useCallback((e: ColorBoxTypes.ValueChangedEvent) => {
+    const toastColor = e.value;
+    if (toastColor) {
+      notify({
+        message: 'The color has been changed',
+        onShowing: (args: ToastTypes.ShowingEvent) => {
+          args.component.content().style.backgroundColor = toastColor;
+        },
+      });
+    }
+  }, []);
+
   return (
-    <div className="main">
-      <Button text={`Click count: ${count}`} onClick={clickHandler} />
+    <div id="container">
+      <ColorBox
+        label="Pick a color"
+        defaultValue="#000000"
+        editAlphaChannel={true}
+        applyButtonText="Show notification"
+        showClearButton={true}
+        onValueChanged={onValueChanged}
+      />
     </div>
   );
 }

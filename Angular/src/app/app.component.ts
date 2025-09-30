@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ClickEvent } from 'devextreme/ui/button';
+import notify from 'devextreme/ui/notify';
+import { DxColorBoxTypes } from 'devextreme-angular/ui/color-box';
+import { DxToastTypes } from 'devextreme-angular/ui/toast';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +9,17 @@ import { ClickEvent } from 'devextreme/ui/button';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Angular';
+  toastColor: string = '';
 
-  counter = 0;
-
-  buttonText = 'Click count: 0';
-
-  onClick(e: ClickEvent): void {
-    this.counter++;
-    this.buttonText = `Click count: ${this.counter}`;
+  onValueChanged(e: DxColorBoxTypes.ValueChangedEvent): void {
+    this.toastColor = e.value;
+    if (this.toastColor) {
+      notify({
+        message: 'The color has been changed',
+        onShowing: (args: DxToastTypes.ShowingEvent) => {
+          args.component.content().style.backgroundColor = this.toastColor;
+        },
+      });
+    }
   }
 }
