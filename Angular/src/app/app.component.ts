@@ -4,9 +4,10 @@ import { DxColorBoxTypes } from 'devextreme-angular/ui/color-box';
 import { DxToastTypes } from 'devextreme-angular/ui/toast';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
   toastColor: string = '';
