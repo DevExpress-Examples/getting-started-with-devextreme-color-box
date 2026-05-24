@@ -3,11 +3,13 @@ import notify from 'devextreme/ui/notify';
 import { DxColorBoxTypes } from 'devextreme-angular/ui/color-box';
 import { DxToastTypes } from 'devextreme-angular/ui/toast';
 
+import { DxColorBoxModule } from 'devextreme-angular/ui/color-box';
+
 @Component({
     selector: 'app-root',
+    imports: [DxColorBoxModule],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: false
 })
 export class AppComponent {
   toastColor: string = '';
