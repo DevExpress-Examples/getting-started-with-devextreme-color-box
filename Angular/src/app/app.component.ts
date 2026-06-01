@@ -9,7 +9,7 @@ import { DxToastTypes } from 'devextreme-angular/ui/toast';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  toastColor: string = '';
+  toastColor = '';
 
   onValueChanged(e: DxColorBoxTypes.ValueChangedEvent): void {
     this.toastColor = e.value;
